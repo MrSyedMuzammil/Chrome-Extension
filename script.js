@@ -2,6 +2,7 @@ let myLeads = [];
 const inputEl = document.querySelector("#input-el");
 const inputBtn = document.querySelector("#input-btn");
 const ulEl = document.querySelector("#ul-el");
+const deleteBtn = document.querySelector("#delete-btn");
 
 const leadsFromLocalStorage = localStorage.getItem("myLeads");
 
@@ -32,3 +33,11 @@ function renderLeads() {
   }
   ulEl.innerHTML = listItems;
 }
+
+deleteBtn.addEventListener("dblclick", function () {
+  // myLeads = [];
+  // ulEl.innerHTML = "";
+  localStorage.clear();
+  myLeads = [];
+  renderLeads();
+});
