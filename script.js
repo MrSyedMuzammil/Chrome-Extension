@@ -11,13 +11,26 @@ if (leadsFromLocalStorage) {
   renderLeads();
 }
 
-inputBtn.addEventListener("click", function () {
+inputBtn.addEventListener("click", saveLead);
+inputEl.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    saveLead();
+  }
+});
+
+function saveLead() {
   let lead = inputEl.value;
   myLeads.push(lead);
   inputEl.value = "";
 
   localStorage.setItem("myLeads", JSON.stringify(myLeads));
   renderLeads();
+}
+
+inputBtn.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    saveLead();
+  }
 });
 
 function renderLeads() {
@@ -35,8 +48,6 @@ function renderLeads() {
 }
 
 deleteBtn.addEventListener("dblclick", function () {
-  // myLeads = [];
-  // ulEl.innerHTML = "";
   localStorage.clear();
   myLeads = [];
   renderLeads();
