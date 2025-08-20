@@ -2,6 +2,7 @@ let myLeads = [];
 const inputEl = document.querySelector("#input-el");
 const inputBtn = document.querySelector("#input-btn");
 const ulEl = document.querySelector("#ul-el");
+
 const leadsFromLocalStorage = localStorage.getItem("myLeads");
 
 if (leadsFromLocalStorage) {
@@ -20,7 +21,7 @@ inputBtn.addEventListener("click", function () {
 
 function renderLeads() {
   let listItems = "";
-  for (let i = 0; i < myLeads.length; i++) {
+  for (let i = myLeads.length - 1; i >= 0; i--) {
     listItems += `
                   <li>
                     <a href="${myLeads[i]}" target="_blank" >
