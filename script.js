@@ -1,4 +1,5 @@
 let myLeads = [];
+let oldLeads = [];
 const inputEl = document.querySelector("#input-el");
 const inputBtn = document.querySelector("#input-btn");
 const ulEl = document.querySelector("#ul-el");
@@ -8,7 +9,7 @@ const leadsFromLocalStorage = localStorage.getItem("myLeads");
 
 if (leadsFromLocalStorage) {
   myLeads = JSON.parse(leadsFromLocalStorage);
-  renderLeads();
+  render(myLeads);
 }
 
 inputBtn.addEventListener("click", saveLead);
@@ -24,7 +25,7 @@ function saveLead() {
   inputEl.value = "";
 
   localStorage.setItem("myLeads", JSON.stringify(myLeads));
-  renderLeads();
+  render(myLeads);
 }
 
 inputBtn.addEventListener("keydown", function (event) {
@@ -33,13 +34,13 @@ inputBtn.addEventListener("keydown", function (event) {
   }
 });
 
-function renderLeads() {
+function render(leads) {
   let listItems = "";
-  for (let i = myLeads.length - 1; i >= 0; i--) {
+  for (let i = leads.length - 1; i >= 0; i--) {
     listItems += `
                   <li>
-                    <a href="${myLeads[i]}" target="_blank" >
-                    ${myLeads[i]}
+                    <a href="${leads[i]}" target="_blank" >
+                    ${leads[i]}
                     </a> 
                   </li>
                   `;
@@ -50,5 +51,5 @@ function renderLeads() {
 deleteBtn.addEventListener("dblclick", function () {
   localStorage.clear();
   myLeads = [];
-  renderLeads();
+  render(myLeads);
 });
