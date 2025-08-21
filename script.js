@@ -21,6 +21,9 @@ inputEl.addEventListener("keydown", function (event) {
 });
 
 function saveLead() {
+  if (inputEl.value.trim() === "") {
+    return;
+  }
   let lead = inputEl.value;
   myLeads.push(lead);
   inputEl.value = "";
