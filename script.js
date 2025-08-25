@@ -34,9 +34,19 @@ function saveLead() {
 
 tabBtn.addEventListener("click", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-    myLeads.push(tabs[0].url);
-    localStorage.setItem("myLeads", JSON.stringify(myLeads));
-    render(myLeads);
+    const url = tabs[0].url;
+
+    if (myLeads.includes(url)) {
+      tabBtn.classList.add("btn-error");
+
+      setTimeout(function () {
+        tabBtn.classList.remove("btn-error");
+      }, 500);
+    } else {
+      myLeads.push(url);
+      localStorage.setItem("myLeads", JSON.stringify(myLeads));
+      render(myLeads);
+    }
   });
 });
 
